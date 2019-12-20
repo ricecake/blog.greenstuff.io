@@ -1,5 +1,6 @@
 baseURL = "http://example.org/"
 title = "My New Hugo Site"
+publishDir = "docs"
 baseurl = "/"
 languageCode = "en-us"
 theme = "hello-friend"
