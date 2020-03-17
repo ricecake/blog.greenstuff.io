@@ -1,4 +1,4 @@
-title = "My New Hugo Site"
+title = "GreenStuff Blog"
 publishDir = "docs"
 baseurl = "/"
 languageCode = "en-us"
@@ -17,8 +17,8 @@ paginate = 5
 
 [languages]
   [languages.en]
-    title = "Hello Friend"
-    subtitle = "A simple theme for Hugo"
+    title = "GreenStuff"
+    subtitle = "Stuff I think about"
     keywords = ""
     copyright = ""
     menuMore = "Show more"
