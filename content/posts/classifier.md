@@ -78,6 +78,19 @@ It was actually totally related, just not on the face of it.
 {{</aside>}}
 A few years later, while looking into an entirely unrelated problem, I came across some techniques for processing text that allowed for it to be operated on *much* more efficient manner, and made the whole thing tractable again.  
 
+So now that it's tractable again, I've decided to revitalize the effort, with a more focusted goal:
+**Identify log messages that you should look at.**
+Since log messages are also relatively consistently formatted, new ones may be added without notice, and they would benefit from filtering, they seem a natural fit for the problem domain.
+Additionally, having a lot of "log noise" is common, so a tool that would only display the messages that conveyed more *information* would be valuable.
+High information log messages should probably be brought to the attention of a human.
+
+#### Why log messages?
+If you talk to anyone with a lot of log output, they'll tell you that a lot of it can be ignored most of the time.
+They'll frequently have alerts setup for the conditions that are really scary.  
+But even in the conditions that aren't scary, if you explore them, you can find different scenarios where maybe there should be an alert, but only under some threshold conditions.
+So the goal of the tool is to automatically detect those pathological cases where the logs are weird, but you wouldn't have thought
+to document that this was weird upfront.
+
 ### A quick note on formatting
 Throughout this post, I'm going to be using some formatting to convey meaning.
 
@@ -112,6 +125,13 @@ Putting aside the comparison question for the moment, we're left with the questi
 #### DBSCAN
 
 ### How do we compare strings?
+The relationship between distance and similarity.
+Things should be grouped together if they're close on a map,
+and the skittles should be grouped together if their color is very similar.
+
+High similarity is the same as low distance.
+If we normalize it to a scale of 0 to 1: $ D = 1 - S $
+
 #### Levenshtein?
 #### Longest Common Subsequence?
 #### Something else?
@@ -135,6 +155,11 @@ Putting aside the comparison question for the moment, we're left with the questi
 ## Wait, someone already did all this?
 ### Am I that bad a google?
 
+# What is information?
+# How do we know which messages have more information?
+## good-turing?
+## bandwidth?
+## probability?
 <!-- 
 ```go
 go func() {

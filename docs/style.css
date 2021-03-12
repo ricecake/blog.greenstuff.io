@@ -1,0 +1,37 @@
+div.content div.post {
+	max-width: 66%;
+}
+
+header .header__inner {
+	width: 66%;
+}
+
+aside {
+	border: 1px solid black;
+	padding: 1em;
+	/* margin-top: 1em; */
+	margin-bottom: 1em;
+	background-color: lightcyan;
+	clear: both;
+}
+
+body.dark-theme aside {
+	background-color: black;
+}
+
+aside.info {
+	width: 80%;
+	margin: 0 auto;
+	border-left: 1px solid lightskyblue;
+	box-shadow: inset 7px 0 5px -5px lightskyblue;
+}
+
+body.dark-theme aside.info {
+	border-left: 1px solid darkcyan;
+	box-shadow: inset 7px 0 5px -5px darkcyan;
+}
+
+aside.remark {
+	float: right;
+	width: 30%;
+}

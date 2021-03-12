@@ -19,7 +19,27 @@
   </url>
   
   <url>
+    <loc>/recipies/</loc>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>/rfcs/</loc>
+  </url>
+  
+  <url>
+    <loc>/recipies/</loc>
+  </url>
+  
+  <url>
+    <loc>/recipies/recipies/</loc>
+  </url>
+  
+  <url>
+    <loc>/stories/</loc>
   </url>
   
 </urlset>

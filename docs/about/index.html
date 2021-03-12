@@ -21,8 +21,22 @@ Enjoy?"
 <meta name="robots" content="noodp" />
 <link rel="canonical" href="/about/" />
 
+<script>
+	
+	window.MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [['$$', '$$'], ['\[\[', '\]\]']],
+		processEscapes: true,
+		processEnvironments: true,
+	  },
+	  options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+	  }
+	};
+  </script>
 
-
+  <script async defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
 
 
 <link rel="stylesheet" href="/assets/style.css" />
@@ -98,9 +112,36 @@ Enjoy?" />
         
       
         
-          <li><a href="/demos/">Demos</a></li>
+          <li><a href="/rfcs/">Cooking RFCs</a></li>
         
       
+      
+        <ul class="menu__sub-inner">
+          <li class="menu__sub-inner-more-trigger">
+            Show more
+            <span class="menu__sub-inner-more-trigger-icon"
+              ><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span
+            >
+          </li>
+          <ul class="menu__sub-inner-more hidden">
+            
+              
+                <li><a href="/demos/">Demos</a></li>
+              
+            
+              
+                <li><a href="/recipies/">Recipies</a></li>
+              
+            
+              
+                <li><a href="/stories/">Stories</a></li>
+              
+            
+          </ul>
+        </ul>
       
       
   </ul>
@@ -112,7 +153,19 @@ Enjoy?" />
       
     
       
+        <li><a href="/rfcs/">Cooking RFCs</a></li>
+      
+    
+      
         <li><a href="/demos/">Demos</a></li>
+      
+    
+      
+        <li><a href="/recipies/">Recipies</a></li>
+      
+    
+      
+        <li><a href="/stories/">Stories</a></li>
       
     
   </ul>
@@ -207,7 +260,7 @@ This is where I thought I might try doing that, since writing is a good way to c
 
       <div class="copyright">
         <span
-          >© 2020 Powered by
+          >© 2021 Powered by
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
         >
         <span

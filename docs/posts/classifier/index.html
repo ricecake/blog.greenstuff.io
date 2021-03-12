@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        String Classifier: A story ::
+        GreenStuff — Stuff I think about
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="A brief history of what I&amp;rsquo;m even going on about. I&amp;rsquo;ve got this idea for how to automatically classify and produce a matching algorithm for an unbounded stream of small strings with slight differences, and I think it might be fun to detail how it all works.
+How it started So, a while ago I was working on a project that involved needing to collect and classify automated emails. The we decided to classify them based on their subject lines, which tended to be similar, but had minor differences:"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/posts/classifier/" />
+
+<script>
+	
+	window.MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [['$$', '$$'], ['\[\[', '\]\]']],
+		processEscapes: true,
+		processEnvironments: true,
+	  },
+	  options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+	  }
+	};
+  </script>
+
+  <script async defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+
+<link rel="stylesheet" href="/assets/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="String Classifier: A story"/>
+<meta name="twitter:description" content="A brief history of what I&rsquo;m even going on about. I&rsquo;ve got this idea for how to automatically classify and produce a matching algorithm for an unbounded stream of small strings with slight differences, and I think it might be fun to detail how it all works.
+How it started So, a while ago I was working on a project that involved needing to collect and classify automated emails. The we decided to classify them based on their subject lines, which tended to be similar, but had minor differences:"/>
+
+
+
+<meta property="og:title" content="String Classifier: A story" />
+<meta property="og:description" content="A brief history of what I&rsquo;m even going on about. I&rsquo;ve got this idea for how to automatically classify and produce a matching algorithm for an unbounded stream of small strings with slight differences, and I think it might be fun to detail how it all works.
+How it started So, a while ago I was working on a project that involved needing to collect and classify automated emails. The we decided to classify them based on their subject lines, which tended to be similar, but had minor differences:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/classifier/" />
+<meta property="article:published_time" content="2020-10-21T09:52:26-04:00" />
+<meta property="article:modified_time" content="2020-10-21T09:52:26-04:00" /><meta property="og:site_name" content="GreenStuff" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >greenstuff -v</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about/">About</a></li>
+        
+      
+        
+          <li><a href="/rfcs/">Cooking RFCs</a></li>
+        
+      
+      
+        <ul class="menu__sub-inner">
+          <li class="menu__sub-inner-more-trigger">
+            Show more
+            <span class="menu__sub-inner-more-trigger-icon"
+              ><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span
+            >
+          </li>
+          <ul class="menu__sub-inner-more hidden">
+            
+              
+                <li><a href="/demos/">Demos</a></li>
+              
+            
+              
+                <li><a href="/recipies/">Recipies</a></li>
+              
+            
+              
+                <li><a href="/stories/">Stories</a></li>
+              
+            
+          </ul>
+        </ul>
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about/">About</a></li>
+      
+    
+      
+        <li><a href="/rfcs/">Cooking RFCs</a></li>
+      
+    
+      
+        <li><a href="/demos/">Demos</a></li>
+      
+    
+      
+        <li><a href="/recipies/">Recipies</a></li>
+      
+    
+      
+        <li><a href="/stories/">Stories</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">String Classifier: A story</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-10-21
+        </span>
+
+        
+          
+        
+      
+
+      
+
+
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+      <h1 id="a-brief-history-of-what-im-even-going-on-about">A brief history of what I&rsquo;m even going on about.</h1>
+<p>I&rsquo;ve got this idea for how to automatically classify and produce a matching algorithm for an unbounded stream of small strings with slight differences, and I think it might be fun to detail how it all works.</p>
+<h2 id="how-it-started">How it started</h2>
+<p>So, a while ago I was working on a project that involved needing to collect and classify automated emails.
+The we decided to classify them based on their subject lines, which tended to be similar, but had minor differences:</p>
+<pre><code>Hello [XYZ]! There's a problem with (FOO)!
+Variety is the spice of life, right [QUX]?
+Hello [ABC]! There's a problem with (BAR)!
+Variety is the spice of life, right [QUIZ]?
+Hello [HIJ]! There's a problem with (BAZ)!
+Some random, unexpected string.
+</code></pre><p>
+<aside  class="remark">
+
+There's some performance penalties to doing things this way, but given the volumes we were dealing with, they didn't 
+stand out as particularly troubling.  
+Some better methods of approaching this problem will be discussed later.
+</aside>
+Since these messages were machine generated from templates, it didn&rsquo;t seem like too much work to make a system
+that would run a regex over incoming messages, and then classify them based on which one matched.</p>
+
+<aside  class="info">
+<p>&ldquo;regex&rdquo; is short hand for a variant of what are called &ldquo;regular expressions&rdquo;.<br>
+A regular expression is a compact system for describing the format
+of a string of text.
+A small regular expression <code>a*</code> would match the &lsquo;a&rsquo; character zero or more times.
+so it would match</p>
+<pre><code>a
+aa
+aaa
+</code></pre><p>and so on, as well as any other string, since every string has at least zero &lsquo;a&rsquo;s in it.</p>
+<p>A more complicated example would be <code>a(b|c\d?)+</code>, which roughly transaltes to &ldquo;An &lsquo;a&rsquo;, followed by one or more instances of either one &lsquo;b&rsquo;, or one &lsquo;c&rsquo; possibly followed by any number&rdquo;.
+As you can tell, this can become quite complex, and describe many different strings in a very compact notation.</p>
+</aside>
+<p>Now, since we didn&rsquo;t control the source of these messages, we couldn&rsquo;t control when the set of messages that we needed to work with changed.
+This meant that at some interval, unknown to us, new message classifications would show up, and we wouldn&rsquo;t be able to accurately label them.<br>
+This shouldn&rsquo;t be too big of an issue, since we can label those messages as &ldquo;unknown&rdquo;, and since we&rsquo;re only interested in a general breakdown, not
+a specific, per message tracking, it should be fine to have someone get an alert and go write a regex when a surge of new messages starts coming in.</p>
+<p>Turns out that wasn&rsquo;t the case, and eventually the project faltered and was decomissioned.</p>
+<h2 id="how-could-that-have-been-prevented">How could that have been prevented?</h2>
+<p>
+<aside  class="remark">
+
+The issue was actually a poorly defined value proposition for the project, but that isn't interesting and was solved by cancelling it.
+</aside>
+The issue came down to the problem of classifying the unknown.</p>
+<p>Since we didn&rsquo;t know what to do with the unknown messages, we were left with needing to involve humans in the mix, since humans are good at <em>classification</em> and <em>pattern recognition</em>.</p>
+<p>For a while, while the project was being reevaluated in light of these limitations, I spent some time investigating ways to try to cut humans out of the loop, in some small way.<br>
+I came across a variety of different techniques for ways that you can automatically group a mostly unknown collection of things, and came up with some ideas for how to use that information to produce a regex to match the data.<br>
+Unfortunatly, none of them was able to opperate with acceptable performance (best case scenario was $O(n^2)$, which was unacceptable given the unbounded nature of $n$), so the plans for salvation were set aside, and new projects moved onto.
+
+<aside  class="info">
+
+$O(n^2)$ refers to what is called "Big-O" notation.  It's a measure of average performance for a computer algorithm, in terms of the "size" of the input, leaving off anything that isn't the part that grows the fastest.  
+It's a helpful shortcut for talking about efficiency and performance, where smaller is typically better.
+</aside></p>
+<p>But, the notion of how to do this right never stopped nagging at the back of my mind.</p>
+<h2 id="cut-to-now">Cut to now</h2>
+<p>
+<aside  class="remark">
+
+It was actually totally related, just not on the face of it.
+</aside>
+A few years later, while looking into an entirely unrelated problem, I came across some techniques for processing text that allowed for it to be operated on <em>much</em> more efficient manner, and made the whole thing tractable again.</p>
+<p>So now that it&rsquo;s tractable again, I&rsquo;ve decided to revitalize the effort, with a more focusted goal:
+<strong>Identify log messages that you should look at.</strong>
+Since log messages are also relatively consistently formatted, new ones may be added without notice, and they would benefit from filtering, they seem a natural fit for the problem domain.
+Additionally, having a lot of &ldquo;log noise&rdquo; is common, so a tool that would only display the messages that conveyed more <em>information</em> would be valuable.
+High information log messages should probably be brought to the attention of a human.</p>
+<h4 id="why-log-messages">Why log messages?</h4>
+<p>If you talk to anyone with a lot of log output, they&rsquo;ll tell you that a lot of it can be ignored most of the time.
+They&rsquo;ll frequently have alerts setup for the conditions that are really scary.<br>
+But even in the conditions that aren&rsquo;t scary, if you explore them, you can find different scenarios where maybe there should be an alert, but only under some threshold conditions.
+So the goal of the tool is to automatically detect those pathological cases where the logs are weird, but you wouldn&rsquo;t have thought
+to document that this was weird upfront.</p>
+<h3 id="a-quick-note-on-formatting">A quick note on formatting</h3>
+<p>Throughout this post, I&rsquo;m going to be using some formatting to convey meaning.</p>
+<p>
+<aside  class="remark">
+
+A blase and pointless remark
+</aside>
+The first piece of formatting is: The remark.
+I&rsquo;ll be using this for commentary or side comments that aren&rsquo;t directly related to what&rsquo;s being said, but that I wanted to say anyway.</p>
+<p>The next is
+
+<aside  class="info">
+
+Extra information
+</aside>
+This is for pieces of information that go a bit more in-depth explaining the background context of some statemnt that I&rsquo;ve made.</p>
+<p>As I&rsquo;ve already used both of those formatting conventions rather excessively, hopefully their point is relatively clear.<br>
+Anyway, feel free to ignore the side remarks, and skip the extra info if nothing came across as mysterious.</p>
+<h1 id="so-what-wasnt-working">So what <em>wasn&rsquo;t</em> working?</h1>
+<h4 id="where-i-came-from-and-terminology-definitions">Where I came from, and terminology definitions</h4>
+<p>The general &ldquo;theme&rdquo; to what didn&rsquo;t pan out was: It kinda worked, but if you keep putting stuff in, it&rsquo;ll become very slow or
+use incredible resources, and actually always do both.</p>
+<h2 id="honey-nut-data-clustering-algorithms">Honey nut data clustering algorithms</h2>
+<p>Clustering is the the process of comparing things to other things, and then putting
+things that are similar next to each other.<br>
+It&rsquo;s what sane people do with their skittles before eating them.</p>
+<h3 id="actually-grouping-things">Actually grouping things</h3>
+<p>Putting aside the comparison question for the moment, we&rsquo;re left with the question of grouping.</p>
+<h4 id="affinity-propagation">affinity propagation</h4>
+<h4 id="dbscan">DBSCAN</h4>
+<h3 id="how-do-we-compare-strings">How do we compare strings?</h3>
+<p>The relationship between distance and similarity.
+Things should be grouped together if they&rsquo;re close on a map,
+and the skittles should be grouped together if their color is very similar.</p>
+<p>High similarity is the same as low distance.
+If we normalize it to a scale of 0 to 1: $ D = 1 - S $</p>
+<h4 id="levenshtein">Levenshtein?</h4>
+<h4 id="longest-common-subsequence">Longest Common Subsequence?</h4>
+<h4 id="something-else">Something else?</h4>
+<h2 id="regex-generation">Regex generation</h2>
+<h3 id="i-dunno-more-lcs">I dunno&hellip; More LCS?</h3>
+<h1 id="so-what-might-be-working">So what <em>might</em> be working?</h1>
+<h1 id="enter-the-min-hash">Enter: The min-hash</h1>
+<h1 id="what-if-trees">What if trees?</h1>
+<h1 id="density-revisited">Density: Revisited</h1>
+<h4 id="denstream">DenStream</h4>
+<h1 id="hopcroft">Hopcroft?</h1>
+<h1 id="brzozowski">Brzozowski?</h1>
+<h1 id="rpni">RPNI</h1>
+<h2 id="wait-someone-already-did-all-this">Wait, someone already did all this?</h2>
+<h3 id="am-i-that-bad-a-google">Am I that bad a google?</h3>
+<h1 id="what-is-information">What is information?</h1>
+<h1 id="how-do-we-know-which-messages-have-more-information">How do we know which messages have more information?</h1>
+<h2 id="good-turing">good-turing?</h2>
+<h2 id="bandwidth">bandwidth?</h2>
+<h2 id="probability">probability?</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/posts/regex/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Regex the way I like it</span>
+                </a>
+              </span>
+            
+            
+              <span class="button next">
+                <a href="/posts/gsi-story-pt1/">
+                  <span class="button__text">Gsi Story Pt1</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >greenstuff -v</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2021 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
