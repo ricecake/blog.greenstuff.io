@@ -56,11 +56,6 @@ paginate = 5
         url = "/demos/"
 	weight = 30
       [[languages.en.menu.main]]
-        identifier = "rfcs"
-        name = "Cooking RFCs"
-        url = "/rfcs/"
-	weight = 40
-      [[languages.en.menu.main]]
         identifier = "about"
         name = "About"
         url = "/about/"
