@@ -1,2 +1,0 @@
-# ricecake.github.io
-Page
