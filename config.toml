@@ -41,10 +41,28 @@ paginate = 5
 
     [languages.en.menu]
       [[languages.en.menu.main]]
+        identifier = "recipies"
+        name = "Recipies"
+        url = "/recipies/"
+	weight = 10
+      [[languages.en.menu.main]]
+        identifier = "stories"
+        name = "Stories"
+        url = "/stories/"
+	weight = 20
+      [[languages.en.menu.main]]
+        identifier = "demos"
+        name = "Demos"
+        url = "/demos/"
+	weight = 30
+      [[languages.en.menu.main]]
+        identifier = "rfcs"
+        name = "Cooking RFCs"
+        url = "/rfcs/"
+	weight = 40
+      [[languages.en.menu.main]]
         identifier = "about"
         name = "About"
         url = "/about/"
-      [[languages.en.menu.main]]
-        identifier = "Demos"
-        name = "Demos"
-        url = "/demos/"
+	weight = 50
+

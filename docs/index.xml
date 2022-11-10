@@ -2,33 +2,136 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GreenStuff</title>
+    
+    
+    
     <link>/</link>
     <description>Recent content on GreenStuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Mar 2020 00:26:32 -0400</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Demos of things</title>
-      <link>/demos/</link>
-      <pubDate>Tue, 17 Mar 2020 00:26:32 -0400</pubDate>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/demos/</guid>
-      <description>Sadly, there isn&amp;rsquo;t much here as of yet&amp;hellip;</description>
+      <guid>/about/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          I don&amp;rsquo;t know what you&amp;rsquo;re expecting. I think about things, and then I try to write them down. This is where I thought I might try doing that, since writing is a good way to clarify ideas.
+Enjoy?
+          
+        
+        </description>
     </item>
     
     <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Tue, 17 Mar 2020 00:25:51 -0400</pubDate>
+      <title>Demos of things</title>
+      <link>/demos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
-      <description>I don&amp;rsquo;t know what you&amp;rsquo;re expecting. I think about things, and then I try to write them down.
-This is where I thought I might try doing that, since writing is a good way to clarify ideas.
-Enjoy?</description>
+      <guid>/demos/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Sadly, there isn&amp;rsquo;t much here as of yet&amp;hellip;
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>The way things should be cooked</title>
+      <link>/rfcs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/rfcs/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Sadly, there isn&amp;rsquo;t much here as of yet&amp;hellip;
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Things we cook</title>
+      <link>/recipies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/recipies/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Sadly, there isn&amp;rsquo;t much here as of yet&amp;hellip;
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Things we cook</title>
+      <link>/recipies/recipies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/recipies/recipies/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Sadly, there isn&amp;rsquo;t much here as of yet&amp;hellip;
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Writing</title>
+      <link>/stories/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/stories/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Sadly, there isn&amp;rsquo;t much here as of yet&amp;hellip;
+          
+        
+        </description>
     </item>
     
   </channel>

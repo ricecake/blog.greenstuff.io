@@ -1,0 +1,5 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<aside  class="{{ if .Get "class" }}{{ .Get "class" }}{{ else }}remark{{ end }}">
+<!-- <aside {{ with .Get "class"}} class="{{.}}"{{ end }}> -->
+	{{- .Inner -}}
+</aside>
