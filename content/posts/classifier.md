@@ -22,6 +22,9 @@ Some random, unexpected string.
 There's some performance penalties to doing things this way, but given the volumes we were dealing with, they didn't 
 stand out as particularly troubling.  
 Some better methods of approaching this problem will be discussed later.
+// This is a coment about the regex being slow, and how needing to run an unbounded number of regex over each message is maybe really slow.
+// the solution is the dfa, which can run all the regex in parallel, since it works as a classifier rather than a acceptor.
+
 {{</aside>}}
 Since these messages were machine generated from templates, it didn't seem like too much work to make a system
 that would run a regex over incoming messages, and then classify them based on which one matched.
