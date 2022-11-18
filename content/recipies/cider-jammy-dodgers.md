@@ -13,13 +13,13 @@ title: "Cider Jammy Dodgers"
 - 1/2 cup (64 grams) raspberry jam
 ## Directions
 - Combine butter, sugar and eggs.
-    - Add the butter and sugar to a stand mixer or mixing bowl.
+    - Add the butter (227g) and sugar (64g) to a stand mixer or mixing bowl.
     - Beat until light and fluffy. 
     - Add the eggs and continue to mix.
-    - Mix in the vanilla.
+    - Mix in the vanilla (1tsp).
     - Allow to mix until incorporated, scraping sides as needed.
 
-- While butter/sugar incorperates, mix the the flour and salt together in a seperate bowl.
+- While butter/sugar incorperates, mix the the flour (330g) and salt (.25tsp) together in a seperate bowl.
 - Once incorporated, add 1/3 of the flower to the butter and mix.
 - Continue like this until all flour incorporated.
     - it will resemble large crumbles.
@@ -30,8 +30,10 @@ title: "Cider Jammy Dodgers"
 - Use your hands to start pressing the crumbs together, not too much or you can overwork the dough and this will result in hard cookies. 
     - It will be crumbly and feel like it won’t come together but it will, just press until it stays together.
     - If you cannot get the dough to stay together, dip your hand in water and sprinkle water over the dough to moisten, not too much or the cookies will spread too much when baking.
-- Flatten the dough slightly and divide into two.
-- Wrap both in plastic wrap
+- Prepare two sheets of plastic wrap.
+- Seperate half (~340g) of the dough onto each sheet.
+- Flatten the dough slightly, and use plastic wrap to guide dough into rough squares.
+- Place into cooled area.
 - Preheat oven to 350°F/176°C.
 - refrigerate for at least 30 minutes.
     - You can also refrigerate overnight.
