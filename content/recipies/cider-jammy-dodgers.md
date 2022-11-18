@@ -39,8 +39,8 @@ title: "Cider Jammy Dodgers"
     - You can also refrigerate overnight.
 
 - Place a large piece of baking paper/parchment paper onto your work surface.
-- Place another piece on top and roll out the dough to 1/4-inch (6 mm) thick.
-- Use a 2 1/2-inch/6 cm fluted cookie cutter, dip in flour, then cut out the cookies.
+- Place another piece on top and roll out the dough to .25" (6 mm) thick.
+- Use a 2.5"/6 cm fluted cookie cutter, dip in flour, then cut out the cookies.
     - Use a thin spatula to remove and place on a parchment covered baking sheet evenly apart.
 - Use a small heart-shaped cutter and cut a heart in the center of half of the cookies.
 - Bake 15-20 minutes until they start to turn golden brown on the edges but the tops are still pale
